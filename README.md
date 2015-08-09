@@ -1,4 +1,4 @@
-# Dotfiles (Nicolas Gallagher)
+# Dotfiles (Jeremy Myser, based on the fine work of Nicolas Gallagher)
 
 My OS X dotfiles.
 
