@@ -31,7 +31,7 @@ if has("syntax")
     " Set 256 color terminal support
     set t_Co=256
     " Set dark background
-    set background=light
+    set background=dark
     " Set colorscheme
     silent! colorscheme solarized
 endif
