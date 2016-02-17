@@ -1,0 +1,23 @@
+snippet empcpp "Empty CPP File" b
+//
+//  Program: `!p snip.rv = fn`
+//  Created by `echo $USER` on `!v strftime("%c")`.
+//  Description: $1
+//
+
+#include <iostream>
+
+int main(int argc, const char * argv[]) {
+    ${0:// insert code here...}
+    return 0;
+}
+endsnippet
+
+snippet chead "C Header" b
+#ifndef _${1:NAME}_H_
+#define _$1_H_
+
+$0
+
+#endif
+endsnippet
