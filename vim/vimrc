@@ -1,182 +1,112 @@
-" .vimrc
 
-" !silent is used to suppress error messages if the config line
-" references plugins/colorschemes that might be missing
+" ========================================================================
+" Begin Vundle
+" ========================================================================
+" If just setting up new system...
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+
+set nocompatible " Required by vundle
+filetype off     " Required by vundle
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"
+
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-" Ultisnips
-Plugin 'SirVer/ultisnips'
+Plugin 'gmarik/Vundle.vim'
 
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+" Plugins
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sensible'
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'itchyny/lightline.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsListSnippets="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-inoremap <c-x><c-k> <c-x><c-k>
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
+" Colors
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'whatyouhide/vim-gotham'
+Plugin 'mhartington/oceanic-next'
+Plugin 'micha/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
-
 call vundle#end()            " required
+filetype plugin indent on    " required
 
-" Disable Vi compatibility
-set nocompatible
+" ========================================================================
+" End Vundle
+" ========================================================================
 
-" Point to location of pathogen submodule (since it's not in .vim/autoload)
-silent! runtime bundle/vim-pathogen/autoload/pathogen.vim
-" Call pathogen plugin management
-silent! call pathogen#infect()
 
-if has("autocmd")
-    " Load files for specific filetypes
-    filetype on
-    filetype indent on
-    filetype plugin on
-
-    " Languages with specific tabs/space requirements
-    autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
-    " Automatically strip trailing whitespace on file save
-    autocmd BufWritePre *.css,*.html,*.js,*.json,*.md,*.php,*.py,*.rb,*.scss,*.sh,*.txt :call StripTrailingWhitespace()
-    " Don't treat json as javascript
-    autocmd BufRead,BufNewFile *.json set filetype=json
-endif
-
-if has("syntax")
-    " Enable syntax highlighting
+" ========================================================================
+" Colors
+" ========================================================================
+if !exists("g:syntax_on")
     syntax enable
-    " Set 256 color terminal support
-    set t_Co=256
-    " Set dark background
-    set background=dark
-    " Set colorscheme
-    silent! colorscheme solarized
 endif
 
-if has("cmdline_info")
-    " Show the cursor line and column number
-    set ruler
-    " Show partial commands in status line
-    set showcmd
-    " Show whether in insert or replace mode
-    set showmode
+if !has('gui_running')
+  set t_Co=256
 endif
 
-if has('statusline')
-    " Always show status line
-    set laststatus=2
-    " Broken down into easily includeable segments
-    " Filename
-    set statusline=%<%f\
-    " Options
-    set statusline+=%w%h%m%r
-    " Current dir
-    set statusline+=\ [%{getcwd()}]
-    " Right aligned file nav info
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%
-endif
+colorscheme gotham
+" colorscheme OceanicNext
 
-if has("wildmenu")
-    " Show a list of possible completions
-    set wildmenu
-    " Tab autocomplete longest possible part of a string, then list
-    set wildmode=longest,list
-    if has ("wildignore")
-        set wildignore+=*.a,*.pyc,*.o,*.orig
-        set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
-        set wildignore+=.DS_Store,.git,.hg,.svn
-        set wildignore+=*~,*.sw?,*.tmp
-    endif
-endif
+" set background=dark
+" colorscheme solarized
 
-if has("extra_search")
-    " Highlight searches [use :noh to clear]
-    set hlsearch
-    " Highlight dynamically as pattern is typed
-    set incsearch
-    " Ignore case of searches...
-    set ignorecase
-    " ...unless has mixed case
-    set smartcase
-endif
+let g:lightline = {
+      \ 'colorscheme': 'gotham',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ }
+      \ }
 
-" Show hidden files when using ctrlp
-let g:ctrlp_show_hidden = 1
 
-" Change mapleader
-let mapleader=","
 
-" Backspace through everything in INSERT mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
+" ========================================================================
+" Shortcuts
+" ========================================================================
+let mapleader = ","
+map <Leader>bb :!bundle install<cr>
+map <Leader>vr :e ~/.vimrc
+map <Leader>s :w<cr>
+map <Leader>q :q<cr>
 
-" No line wrapping
+
+
+" ========================================================================
+" Settings
+" ========================================================================
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set history=500     " keep 500 lines of command line history
+set ruler       " show the cursor position all the time
+set showcmd     " display incomplete commands
+set showmatch
 set nowrap
-" Use 4 spaces for indentation
-set shiftwidth=4
-" Use 4 spaces for soft tab
-set softtabstop=4
-" Use 4 spaces for tab
-set tabstop=4
-" Expand tab to spaces
-set expandtab
-" Enable line numbers
+set backupdir=~/.tmp
+set directory=~/.tmp " Don't clutter my dirs up with swp and tmp files
+set autoread
+set wmh=0
+set viminfo+=!
+set guioptions-=T
+set smarttab
+set noincsearch
+set ignorecase smartcase
+set laststatus=2  " Always show status line.
+set relativenumber
 set number
-" Highlight current line
-set cursorline
-" Start scrolling three lines before the horizontal window border
-set scrolloff=3
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-
-" Show 'invisible' characters
-set list
-" Set characters used to indicate 'invisible' characters
-set listchars=tab:▸\
-set listchars+=trail:·
-set listchars+=nbsp:_
-"set listchars+=eol:¬
-
-" Centralize backups, swapfiles and undo history
-set backupdir=$HOME/.vim/backups
-set directory=$HOME/.vim/swaps
-if exists("&undodir")
-    set undodir=$HOME/.vim/undo
-endif
-set viminfo+=n$HOME/.vim/.viminfo
-
-" Strip trailing whitespace (,$)
-noremap <leader>$ :call StripTrailingWhitespace()<CR>
-
-" Faster viewport scrolling (3 lines at a time)
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-vnoremap <C-e> 3<C-e>
-vnoremap <C-y> 3<C-y>
-
-" Make `Y` work from the cursor to the end of line (which is more logical)
-nnoremap Y y$
-
-" Load local machine settings if they exist
-if filereadable(glob("$HOME/.vimrc.local"))
-    source $HOME/.vimrc.local
-endif
+set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
+set autoindent " always set autoindenting on
+set lazyredraw " Don't redraw screen when running macros.
+set tabstop=4   
+set shiftwidth=4
+set expandtab
+set softtabstop=4   
+set autoindent
+set list listchars=tab:»·,trail:·
+set hlsearch
+inoremap <Tab> <C-P>
+runtime macros/matchit.vim
