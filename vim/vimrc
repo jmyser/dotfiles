@@ -9,7 +9,7 @@ set nocompatible " Required by vundle
 filetype off     " Required by vundle
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.dotfiles/vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -51,14 +51,14 @@ if !has('gui_running')
   set t_Co=256
 endif
 
-colorscheme gotham
+" colorscheme gotham
 " colorscheme OceanicNext
 
-" set background=dark
-" colorscheme solarized
+set background=dark
+colorscheme solarized
 
 let g:lightline = {
-      \ 'colorscheme': 'gotham',
+      \ 'colorscheme': 'solarized',
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
       \ }
