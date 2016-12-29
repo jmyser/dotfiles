@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------
 
 # Disable Menu bar transparency
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
 
 # Enable snap-to-grid for desktop icons
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
@@ -92,16 +92,16 @@ defaults write com.apple.finder QuitMenuItem -bool true
 chflags nohidden ~/Library
 
 # Finder: show hidden files by default
-defaults write com.apple.finder AppleShowAllFiles -bool true
+defaults write com.apple.finder AppleShowAllFiles -bool false
 
 # Finder: use list view in all windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Show icons for hard drives, servers, and removable media on the desktop
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 
