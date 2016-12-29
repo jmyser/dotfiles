@@ -3,7 +3,7 @@
 " Begin Vundle
 " ========================================================================
 " If just setting up new system...
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.dotfiles/vim/bundle/Vundle.vim"
 
 set nocompatible " Required by vundle
 filetype off     " Required by vundle
@@ -52,10 +52,10 @@ if !has('gui_running')
 endif
 
 " colorscheme gotham
-colorscheme OceanicNext
+" colorscheme OceanicNext
 
-" set background=dark
-" colorscheme solarized
+set background=dark
+colorscheme solarized
 
 let g:lightline = {
       \ 'colorscheme': 'solarized',
@@ -69,7 +69,7 @@ let g:lightline = {
 " ========================================================================
 " Shortcuts
 " ========================================================================
-let mapleader = ","
+let mapleader = "\<Space>"
 map <Leader>bb :!bundle install<cr>
 map <Leader>vr :e ~/.vimrc
 map <Leader>s :w<cr>
@@ -108,5 +108,7 @@ set softtabstop=4
 set autoindent
 set list listchars=tab:»·,trail:·
 set hlsearch
+filetype plugin indent on
 inoremap <Tab> <C-P>
+inoremap jj <ESC>
 runtime macros/matchit.vim
