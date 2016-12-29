@@ -52,10 +52,10 @@ if !has('gui_running')
 endif
 
 " colorscheme gotham
-" colorscheme OceanicNext
+colorscheme OceanicNext
 
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
 
 let g:lightline = {
       \ 'colorscheme': 'solarized',
@@ -96,7 +96,7 @@ set smarttab
 set noincsearch
 set ignorecase smartcase
 set laststatus=2  " Always show status line.
-set relativenumber
+set relativenumber " vim must be at least v7.4 for these relativenumber/number to both work
 set number
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 set autoindent " always set autoindenting on
