@@ -1,4 +1,3 @@
-
 " ========================================================================
 " Begin Vundle
 " ========================================================================
@@ -9,7 +8,7 @@ set nocompatible " Required by vundle
 filetype off     " Required by vundle
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.dotfiles/vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -26,6 +25,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " Colors
+Plugin 'arcticicestudio/nord-vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'mhartington/oceanic-next'
@@ -55,10 +55,11 @@ endif
 " colorscheme OceanicNext
 
 set background=dark
-colorscheme solarized
+" colorscheme solarized
+colorscheme nord
 
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'nord',
       \ 'component': {
       \   'readonly': '%{&readonly?"⭤":""}',
       \ }
