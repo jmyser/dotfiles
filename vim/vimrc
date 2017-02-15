@@ -142,6 +142,7 @@ set softtabstop=4
 set autoindent
 set list listchars=tab:»·,trail:·
 set hlsearch
+set cpoptions+=$
 filetype plugin indent on
 inoremap <Tab> <C-P>
 inoremap jj <ESC>
